@@ -112,7 +112,7 @@ export const LiveQuiz = ({
       setCurrentState(data);
     });
 
-    sio.on("msg", (data: { room: string; message: string }) => {
+    sio.on("chat", (data: { room: string; message: string }) => {
       console.log("Received message:", data);
       setMessages((messages) => [...messages, data.message]);
     });
@@ -134,7 +134,7 @@ export const LiveQuiz = ({
   const sendMessage = () => {
     if (socket) {
       //   socket.emit("msg", messageToSend);
-      socket.emit("msg", { ...user, message: message });
+      socket.emit("chat", { ...user, message: message });
       console.log("Sent message:", message);
     }
   };
